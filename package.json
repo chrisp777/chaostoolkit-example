@@ -1,0 +1,19 @@
+{
+  "name": "chaostoolkit-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "start-retrieval && start-storage",
+    "start-retrieval": "./node_modules/pm2/bin/pm2 start retrieval.js --name RETRIEVAL",
+    "start-storage": "./node_modules/pm2/bin/pm2 start storage.js --name STORAGE"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2",
+    "pm2": "^2.10.4",
+    "star-wars-quotes": "^1.0.2"
+  }
+}

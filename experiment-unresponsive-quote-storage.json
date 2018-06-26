@@ -1,0 +1,76 @@
+{
+    "version": "1.0.0",
+    "title": "What is the impact of the quote store going down?",
+    "description": "If the quote store is down, we should fall back gracefully.",
+    "tags": [
+        "quotes"
+    ],
+    "configuration": {
+        "quoteStorageUrl": "http://52.58.13.62:8080/quote",
+        "quoteRetrievalUrl": "http://52.58.13.62:9090/star-wars",
+        "storagePm2Label": "STORAGE",
+        "retrievalPm2Label": "RETRIEVAL"
+    },
+    "steady-state-hypothesis": {
+        "title": "Application responds",
+        "probes": [
+            {
+                "type": "probe",
+                "name": "the-quote-storage-system-is-responsive",
+                "tolerance": [
+                    200
+                ],
+                "provider": {
+                    "type": "http",
+                    "url": "${quoteStorageUrl}",
+                    "method": "get",
+                    "timeout": 2
+                }
+            },
+            {
+                "type": "probe",
+                "name": "the-quote-retrieval-system-is-responsive",
+                "tolerance": [
+                    200
+                ],
+                "provider": {
+                    "type": "http",
+                    "url": "${quoteRetrievalUrl}",
+                    "method": "get",
+                    "timeout": 2
+                }
+            }
+        ]
+    },
+    "method": [
+        {
+            "type": "action",
+            "name": "swap-to-expired-cert",
+            "provider": {
+                "type": "process",
+                "path": "pm2",
+                "arguments": "stop ${storagePm2Label}"
+            }
+        }
+    ],
+    "rollbacks": [
+        {
+            "type": "action",
+            "name": "restart-storage",
+            "provider": {
+                "type": "process",
+                "path": "pm2",
+                "arguments": "restart storage.js --name ${storagePm2Label}"
+            }
+        },
+        {
+            "type": "action",
+            "name": "restart-retrieval",
+            "provider": {
+                "type": "process",
+                "path": "pm2",
+                "arguments": "restart retrieval.js --name ${retrievalPm2Label}"
+            }
+        }
+    ]
+}
