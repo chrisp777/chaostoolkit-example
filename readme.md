@@ -11,8 +11,10 @@ To install and then spin up the two services wrapped in pm2.
 
 `npm start`
 
-Then you should configure the experiments to point at the correct http endpoints. 
-After installing the chaostoolkit you should be able to do: 
+## Configure the experiements
+Set the env variables `STORAGE_URL` and `RETRIEVAL_URL`
+
+## Run the experiements
 
 `chaos run experiment-quote-storage-process.json`
 

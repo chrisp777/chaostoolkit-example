@@ -6,8 +6,14 @@
         "quotes"
     ],
     "configuration": {
-        "quoteStorageUrl": "http://52.58.13.62:8080/quote",
-        "quoteRetrievalUrl": "http://52.58.13.62:9090/star-wars",
+        "quoteStorageUrl": {
+            "type": "env",
+            "key": "STORAGE_URL"
+        },
+        "quoteRetrievalUrl": {
+            "type": "env",
+            "key": "RETRIEVAL_URL"
+        },
         "storagePm2Label": "STORAGE",
         "retrievalPm2Label": "RETRIEVAL"
     },
