@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "start-retrieval && start-storage",
+    "start": "npm run start-retrieval && npm run start-storage",
     "start-retrieval": "./node_modules/pm2/bin/pm2 start retrieval.js --name RETRIEVAL",
     "start-storage": "./node_modules/pm2/bin/pm2 start storage.js --name STORAGE"
   },
