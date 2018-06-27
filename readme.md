@@ -11,10 +11,10 @@ To install and then spin up the two services wrapped in pm2.
 
 `npm start`
 
-## Configure the experiements
+## Configure the experiments
 Set the env variables `STORAGE_URL` and `RETRIEVAL_URL`
 
-## Run the experiements
+## Run the experiments
 
 `chaos run experiment-quote-storage-process.json`
 
